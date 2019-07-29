@@ -1,103 +1,93 @@
 from tkinter import *
- 
+
 class Window(Frame):
-
-    state = ""
-    incometaxrate = 0
-    salestaxrate = 2
-    propertytaxrate = 0
-    msg = ""
-    
-
     def __init__(self, window, *args, **kwargs):
         Frame.__init__(self, *args, **kwargs)
         self.window = window
-        self.window.geometry("680x500")
         
-        self.window.title('Tax Calculator')
- 
-        # creating a frame for the listbox
+        self.window.title('Tax')
+        
+        # create a frame for the listbox
         self.listbox_frame = Frame(self.window)
 
-        lab = Label(self.listbox_frame, text=" Select a state:")
+        lab = Label(self.listbox_frame, text="Select your state")
         lab.pack()
  
-        # creating scroll bar 
+        # create scroll bar widget
         sb = Scrollbar(self.listbox_frame, orient=VERTICAL)
-
  
-        # creating listbox      
+        # create listbox widget        
         self.listbox = Listbox(self.listbox_frame, exportselection=0, yscrollcommand=sb.set, 
-                               width=30, height=27, selectmode=SINGLE)
-        
+                               width=50, height=30, selectmode=SINGLE)
  
         # set binding on item select in listbox
         self.listbox.bind('<<ListboxSelect>>', lambda event: self.when_clicked())
-        self.listbox.pack(side=LEFT, fill=Y)
-       
+        self.listbox.pack(side=LEFT)
+        # config scrollbar and pack
         sb.config(command=self.listbox.yview)
-        sb.pack(side=LEFT, fill=Y)
+        sb.pack(side=RIGHT, fill=Y)
  
         # grid listbox_frame to window
         self.listbox_frame.grid(row=0, column=0)
- 
-        # add items to listbox
-        self.listbox.insert(1, "Alabama")
-        self.listbox.insert(2, "Alaska")
-        self.listbox.insert(3, "Arizona")
-        self.listbox.insert(4, "Arkansas")
-        self.listbox.insert(5, "California")
-        self.listbox.insert(6, "Colorado")
-        self.listbox.insert(7, "Connecticut")
-        self.listbox.insert(8, "Delaware")
-        self.listbox.insert(9, "Florida")
-        self.listbox.insert(10, "Georgia")
-        self.listbox.insert(11, "Hawaii")
-        self.listbox.insert(12, "Idaho")
-        self.listbox.insert(13, "Illinois")
-        self.listbox.insert(14, "Indiana")
-        self.listbox.insert(15, "Iowa")
-        self.listbox.insert(16, "Kansas")
-        self.listbox.insert(17, "Kentucky")
-        self.listbox.insert(18, "Louisiana")
-        self.listbox.insert(19, "Maine")
-        self.listbox.insert(20, "Maryland")
-        self.listbox.insert(21, "Massachusetts")
-        self.listbox.insert(22, "Michigan")
-        self.listbox.insert(23, "Minnesota")
-        self.listbox.insert(24, "Mississippi")
-        self.listbox.insert(25, "Missouri")
-        self.listbox.insert(26, "Montana")
-        self.listbox.insert(27, "Nebraska")
-        self.listbox.insert(28, "Nevada")
-        self.listbox.insert(29, "New Hampshire")
-        self.listbox.insert(30, "New Jersey")
-        self.listbox.insert(31, "New Mexico")
-        self.listbox.insert(32, "New York")
-        self.listbox.insert(33, "North Carolina")
-        self.listbox.insert(34, "North Dakota")
-        self.listbox.insert(35, "Ohio")
-        self.listbox.insert(36, "Oklahoma")
-        self.listbox.insert(37, "Oregon")
-        self.listbox.insert(38, "Pennsylvania")
-        self.listbox.insert(39, "Rhode Island")
-        self.listbox.insert(40, "South Carolina")
-        self.listbox.insert(41, "South Dakota")
-        self.listbox.insert(42, "Tennessee")
-        self.listbox.insert(43, "Texas")
-        self.listbox.insert(44, "Utah")
-        self.listbox.insert(45, "Vermont")
-        self.listbox.insert(46, "Virginia")
-        self.listbox.insert(47, "Washington")
-        self.listbox.insert(48, "West Virginia")
-        self.listbox.insert(49, "Wisconsin")
-        self.listbox.insert(50, "Wyoming")
 
- 
-       
-    def when_clicked(self):
-        selection = self.listbox.curselection()
+        # add items to listbox
+        self.listbox.insert(1, 'Alabama') 
+        self.listbox.insert(2, 'Alaska') 
+        self.listbox.insert(3, 'Arizona')
+        self.listbox.insert(4, 'Arkansas')
+        self.listbox.insert(5, 'California') 
+        self.listbox.insert(6, 'Colorado') 
+        self.listbox.insert(7, 'Connecticut') 
+        self.listbox.insert(8, 'Delaware') 
+        self.listbox.insert(9, 'Florida')
+        self.listbox.insert(10, 'Georgia') 
+        self.listbox.insert(11, 'Hawaii') 
+        self.listbox.insert(12, 'Idaho') 
+        self.listbox.insert(13, 'Illinois')
+        self.listbox.insert(14, 'Indiana')
+        self.listbox.insert(15, 'Iowa') 
+        self.listbox.insert(16, 'Kansas') 
+        self.listbox.insert(17, 'Kentucky') 
+        self.listbox.insert(18, 'Loiusiana')
+        self.listbox.insert(19, 'Maine') 
+        self.listbox.insert(20, 'Maryland') 
+        self.listbox.insert(21, 'Massachusetts') 
+        self.listbox.insert(22, 'Michigan')
+        self.listbox.insert(23, 'Minnesota') 
+        self.listbox.insert(24, 'Mississippi') 
+        self.listbox.insert(25, 'Missouri') 
+        self.listbox.insert(26, 'Montana') 
+        self.listbox.insert(27, 'Nebraska') 
+        self.listbox.insert(28, 'Nevada') 
+        self.listbox.insert(29, 'New Hampshire') 
+        self.listbox.insert(30, 'New Jersey')
+        self.listbox.insert(31, 'New Mexico') 
+        self.listbox.insert(32, 'New York') 
+        self.listbox.insert(33, 'North Carolina') 
+        self.listbox.insert(34, 'North Dakota')  
+        self.listbox.insert(35, 'Ohio') 
+        self.listbox.insert(36, 'Oklahoma') 
+        self.listbox.insert(37, 'Oregon') 
+        self.listbox.insert(38, 'Pennsylvania') 
+        self.listbox.insert(39, 'Rhode Island') 
+        self.listbox.insert(40, 'South Carolina') 
+        self.listbox.insert(41, 'South Dakota') 
+        self.listbox.insert(42, 'Tennessee') 
+        self.listbox.insert(43, 'Texas') 
+        self.listbox.insert(44, 'Utah') 
+        self.listbox.insert(45, 'Vermont') 
+        self.listbox.insert(46, 'Virginia')
+        self.listbox.insert(47, 'Washington') 
+        self.listbox.insert(48, 'West Virginia') 
+        self.listbox.insert(49, 'Wisconsin') 
+        self.listbox.insert(50, 'Wyoming') 
         
+ 
+    def when_clicked(self):
+        # curselection() returns a tuple of indexes selected in listbox
+        selection = self.listbox.curselection()
+        if len(selection) > 0:
+           print("Clicked indexes: {0}".format(selection))
         if selection[0] == 0:
             state = "Alabama"
         if selection[0] == 1:
@@ -199,10 +189,110 @@ class Window(Frame):
         if selection[0] == 49:
             state = "Wyoming"
 
-       
-        salestaxrate = 2
-        propertytaxrate = 0.5
-        
+        salestax = 0
+        incometaxrate = 0
+        propertytax = 0
+
+        if state == "Alabama":
+            salestax = 0.0914
+        elif state == "Alaska":
+            salestax = 0.0143
+        elif state == "Arizona":
+            salestax =  0.0837
+        elif state == "Arkansas":
+            salestax = 0.0943
+        elif state == "California":
+            salestax = 0.0856
+        elif state == "Colorado":
+            salestax = 0.0763
+        elif state == "Connecticut":
+            salestax = 0.0635
+        elif state == "Delaware":
+            salestax = 0
+        elif state == "Florida":
+            salestax = 0.0705
+        elif state == "Georgia":
+            salestax = 0.0729
+        elif state == "Hawaii":
+            salestax = 0.0441
+        elif state == "Idaho":
+            salestax = 0.0603
+        elif state == "Illinois":
+            salestax = 0.0874
+        elif state == "Indiana":
+            salestax = 0.0700
+        elif state == "Iowa":
+            salestax = 0.0682
+        elif state == "Kansas":
+            salestax = 0.0867
+        elif state == "Kentucky":
+            salestax = 0.0600
+        elif state == "Louisiana":
+            salestax = 0.0945
+        elif state == "Maine":
+            salestax = 0.0550
+        elif state == "Maryland":
+            salestax = 0.0600
+        elif state == "Massachusetts":
+            salestax = 0.0625
+        elif state == "Michigan":
+            salestax = 0.0600
+        elif state == "Minnesota":
+            salestax = 0.0743
+        elif state == "Mississippi":
+            salestax = 0.0707
+        elif state == "Missouri":
+            salestax = 0.0813
+        elif state == "Montana":
+            salestax = 0
+        elif state == "Nebraska":
+            salestax = 0.0685
+        elif state == "Nevada":
+            salestax = 0.0814
+        elif state == "New Hampshire":
+            salestax = 0
+        elif state == "New Jersey":
+            salestax = 0.0660
+        elif state == "New Mexico":
+            salestax = 0.0782
+        elif state == "New York":
+            salestax = 0.0849
+        elif state == "North Carolina":
+            salestax = 0.0697
+        elif state == "North Dakota":
+            salestax = 0.0685
+        elif state == "Ohio":
+            salestax = 0.0717
+        elif state == "Oklahoma":
+            salestax = 0.0892
+        elif state == "Oregon":
+            salestax = 0
+        elif state == "Pennsylvania":
+            salestax = 0.0634
+        elif state == "Rhode Island":
+            salestax = 0.0700
+        elif state == "South Carolina":
+            salestax = 0.0743
+        elif state == "South Dakota":
+            salestax = 0.0640
+        elif state == "Tennessee":
+            salestax = 0.0947
+        elif state == "Texas":
+            salestax = 0.0819
+        elif state == "Utah":
+            salestax = 0.0694
+        elif state == "Vermont":
+            salestax = 0.0618
+        elif state == "Virginia":
+            salestax = 0.0565
+        elif state == "Washington":
+            salestax = 0.0917
+        elif state == "West Virginia":
+            salestax = 0.0639
+        elif state == "Wisconsin":
+            salestax = 0.0544
+        elif state == "Wyoming":
+            salestax = 0.0536 
 
         if state == "Alabama" :
             incometaxrate = 0.05
@@ -303,56 +393,156 @@ class Window(Frame):
         elif state == "Wisconsin":
             incometaxrate = 0.0765
         elif state == "Wyoming":
-            incometaxrate = 0
+            incometaxrate = 0     
 
-        print(state)
 
+        if state == "Alabama" :
+            propertytax = 0.004
+        elif state == "Alaska" :
+            propertytax = 0.0101
+        elif state == "Arizona":
+            propertytax = 0.0066
+        elif state =="Arkansas":
+            propertytax = 0.0064
+        elif state == "California":
+            propertytax = 0.0073
+        elif state == "Colorado":
+            propertytax = 0.0059
+        elif state == "Connecticut":
+            propertytax = 0.0153
+        elif state == "Delaware":
+            propertytax = 0.0055
+        elif state == "Florida":
+            propertytax = 0.0098
+        elif state == "Georgia":
+            propertytax = 0.0091
+        elif state == "Hawaii":
+            propertytax = 0.0028
+        elif state == "Idaho":
+            propertytax = 0.0073
+        elif state == "Illinois":
+            propertytax = 0.0198
+        elif state == "Indiana":
+            propertytax = 0.0086
+        elif state == "Iowa":
+            propertytax = 0.0142
+        elif state == "Kansas" :
+            propertytax = 0.0130
+        elif state == "Kentucky":
+            propertytax = 0.0080
+        elif state =="Louisiana":
+            propertytax = 0.0050
+        elif state == "Maine":
+            propertytax = 0.0120
+        elif state == "Maryland":
+            propertytax = 0.0100
+        elif state == "Massachusetts":
+            propertytax = 0.0111
+        elif state == "Michigan":
+            propertytax = 0.0146
+        elif state == "Minnesota":
+            propertytax = 0.0109
+        elif state == "Mississippi":
+            propertytax = 0.0065
+        elif state == "Missouri":
+            propertytax = 0.0100
+        elif state == "Montana":
+            propertytax = 0.0075
+        elif state == "Nebraska":
+            propertytax = 0.0165
+        elif state == "Nevada":
+            propertytax = 0.0071
+        elif state == "New Hampshire":
+            propertytax = 0.0199
+        elif state == "New Jersey" :
+            propertytax = 0.0211
+        elif state == "New Mexico":
+            propertytax = 0.0066
+        elif state =="New York":
+            propertytax = 0.0138
+        elif state == "North Carolina":
+            propertytax = 0.0084
+        elif state == "North Dakota":
+            propertytax = 0.0095
+        elif state == "Ohio":
+            propertytax = 0.0158
+        elif state == "Oklahoma":
+            propertytax = 0.0085
+        elif state == "Oregon":
+            propertytax = 0.0101
+        elif state == "Pennsylvania":
+            propertytax = 0.0146
+        elif state == "Rhode Island":
+            propertytax = 0.0146
+        elif state == "South Carolina":
+            propertytax = 0.0055
+        elif state == "South Dakota":
+            propertytax = 0.0122
+        elif state == "Tennessee":
+            propertytax = 0.0075
+        elif state == "Texas":
+            propertytax = 0.0167
+        elif state == "Utah":
+            propertytax = 0.0063
+        elif state == "Vermont":
+            propertytax = 0.0170
+        elif state == "Virginia":
+            propertytax = 0.0081
+        elif state == "Washington":
+            propertytax = 0.0094
+        elif state == "West Virginia":
+            propertytax = 0.0053
+        elif state == "Wisconsin":
+            propertytax = 0.0174
+        elif state == "Wyoming":
+            propertytax = 0.0051          
+       
         msg = "You've chosen " + state + "!"
         self.messageVar = Message(self.listbox_frame, text = msg, width = 700, aspect = 250) 
         self.messageVar.config(bg='lightblue') 
         self.messageVar.pack()
 
+
         def calculate_sales():
             amount_of_purchase = float(entry_1.get())
-            total1 = salestaxrate*amount_of_purchase
-            string_to_display = "Tax to be paid is " + str(total1)
+            total = salestax * amount_of_purchase
+            string_to_display = "Tax to be paid is " + str(total)
             self.message = Message(self.listbox_frame, text = string_to_display, width = 200)
             self.message.pack()
             button55.pack()
 
         def calculate_income():
-            amount_of_income = float(entry_2.get())
-            total2 = incometaxrate*amount_of_income
-            string_to_display = "Tax on income to be paid is " + str(total2)
+            amount_of_purchase = float(entry_2.get())
+            total = incometaxrate * amount_of_purchase
+            string_to_display = "Tax on income to be paid is " + str(total)
             self.message = Message(self.listbox_frame, text = string_to_display, width = 200)
             self.message.pack()
             button55.pack()
 
         def calculate_property():
-            amount_of_property = float(entry_3.get())
-            total3 = propertytaxrate*amount_of_property
-            string_to_display = "Tax on property to be paid is " + str(total3)
+            amount_of_purchase = float(entry_3.get())
+            total = propertytax * amount_of_purchase
+            string_to_display = "Tax on property to be paid is " + str(total)
             self.message = Message(self.listbox_frame, text = string_to_display, width = 200)
             self.message.pack()
             button55.pack()
 
+    
         def show_sales_when_clicked():
             Label_1.pack()
             entry_1.pack()
             button_1.pack()
-            
 
         def show_income_when_clicked():
             Label_2.pack()
             entry_2.pack()
             button_2.pack()
-            
 
         def show_property_when_clicked():
             Label_3.pack()
             entry_3.pack()
             button_3.pack()
-            
+        
 
 
         Label_1 = Label(self.listbox_frame, text = "Enter your amount of purchase")
@@ -363,19 +553,18 @@ class Window(Frame):
         entry_2 = Entry(self.listbox_frame)
         button_2 = Button(self.listbox_frame, text = "Calculate your income tax", command = calculate_income)
 
-        Label_3 = Label(self.listbox_frame, text = "Enter your propert prices")
+        Label_3 = Label(self.listbox_frame, text = "Enter your property prices")
         entry_3 = Entry(self.listbox_frame)
         button_3 = Button(self.listbox_frame, text = "Calculate your property tax", command = calculate_property)
 
-
-
+    
         button1 = Button(self.listbox_frame, text = "Calculate income tax", command = show_income_when_clicked)
         button1.pack()
         button2 = Button(self.listbox_frame, text = "Calculate property tax", command = show_property_when_clicked)
         button2.pack()
         button3 = Button(self.listbox_frame, text = "Calculate sales tax", command = show_sales_when_clicked)
         button3.pack()
-
+ 
         def toplevel():
             top = Toplevel()
             top.title("Expenses")
@@ -397,7 +586,7 @@ class Window(Frame):
 
             if len(entry_3.get()) != 0:
                 amount_of_property = float(entry_3.get())
-                total3 = propertytaxrate*amount_of_property
+                total3 = propertytax*amount_of_property
                 property_tosave = total3/12
                 property_string = "Save " + str(property_tosave) + " per month towards your property tax." 
                 prmessage = Message(top, text = property_string, width = 400)
@@ -408,13 +597,9 @@ class Window(Frame):
         
        
         print(state)
-        
 
-        
- 
 if __name__ == "__main__":
     root = Tk()
+    root.geometry("700x500")
     App = Window(root)
     root.mainloop()
-
-
